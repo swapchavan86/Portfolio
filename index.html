@@ -1,801 +1,435 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Swapnil Subhash Chavan - Technical Architect & Full-Stack Developer">
-    <title>Swapnil Subhash Chavan - Resume</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-sidebar: #f0f2f5;
-            --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --text-muted: #6c757d;
-            --accent: #ff7a50;
-            --accent-light: #ffece6;
-            --border: #e0e0e0;
-            --shadow: rgba(0, 0, 0, 0.1);
-            --card-bg: #ffffff;
-        }
-
-        [data-theme="dark"] {
-            --bg-primary: #1a1a1a;
-            --bg-secondary: #2a2a2a;
-            --bg-sidebar: #242424;
-            --text-primary: #f5f5f5;
-            --text-secondary: #c0c0c0;
-            --text-muted: #999999;
-            --accent: #ff8c66;
-            --accent-light: #3a2a24;
-            --border: #3a3a3a;
-            --shadow: rgba(0, 0, 0, 0.3);
-            --card-bg: #2a2a2a;
-        }
-
-        body {
-            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            z-index: 1000;
-            background: var(--card-bg);
-            border: 2px solid var(--border);
-            border-radius: 50px;
-            padding: 10px 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 12px var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px var(--shadow);
-        }
-
-        .theme-icon {
-            font-size: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 50px;
-            height: 26px;
-            background: var(--bg-secondary);
-            border-radius: 50px;
-            border: 2px solid var(--border);
-            transition: background 0.3s ease;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 18px;
-            height: 18px;
-            background: var(--accent);
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-        }
-
-        [data-theme="dark"] .toggle-slider {
-            transform: translateX(24px);
-        }
-
-        /* Container */
-        .resume-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            min-height: 100vh;
-            box-shadow: 0 0 40px var(--shadow);
-        }
-
-        /* Left Sidebar */
-        .sidebar {
-            background-color: var(--bg-sidebar);
-            padding: 60px 40px;
-            border-right: 1px solid var(--border);
-        }
-
-        .profile-section {
-            text-align: left;
-            margin-bottom: 50px;
-        }
-
-        .profile-photo-wrapper {
-            position: relative;
-            width: 180px;
-            margin-bottom: 25px;
-        }
-
-        .profile-photo {
-            width: 180px;
-            height: 220px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 64px;
-            font-weight: 700;
-            color: var(--accent);
-            box-shadow: 0 8px 24px var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        [data-theme="dark"] .profile-photo {
-            background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
-        }
-
-        .profile-photo::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: -10px;
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            border-radius: 10px;
-            z-index: -1;
-        }
-
-        .profile-name {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .profile-title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-        }
-
-        .sidebar-section {
-            margin-bottom: 45px;
-        }
-
-        .sidebar-section h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .sidebar-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--accent);
-        }
-
-        .skills-category {
-            margin-bottom: 20px;
-        }
-
-        .skills-category-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-        }
-
-        .skills-list {
-            font-size: 0.9rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .contact-icon {
-            min-width: 20px;
-            text-align: center;
-            color: var(--accent);
-            font-size: 1.1rem;
-            margin-top: 2px;
-        }
-
-        .contact-item a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            word-break: break-word;
-        }
-
-        .contact-item a:hover {
-            color: var(--accent);
-        }
-
-        .achievement-item,
-        .cert-item {
-            margin-bottom: 15px;
-        }
-
-        .achievement-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            margin-bottom: 3px;
-        }
-
-        .achievement-details {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Main Content */
-        .main-content {
-            background-color: var(--bg-primary);
-            padding: 60px 50px;
-        }
-
-        .content-section {
-            margin-bottom: 50px;
-        }
-
-        .content-section h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 12px;
-        }
-
-        .content-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--accent);
-        }
-
-        .summary-text {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 15px;
-        }
-
-        /* Education */
-        .education-item {
-            margin-bottom: 30px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .education-item::before {
-            content: '●';
-            position: absolute;
-            left: 0;
-            top: 5px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        .education-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 5px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .degree {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--text-primary);
-        }
-
-        .edu-date {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .institution {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-
-        /* Experience */
-        .experience-item {
-            margin-bottom: 35px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .experience-item::before {
-            content: '●';
-            position: absolute;
-            left: 0;
-            top: 5px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        .job-header {
-            margin-bottom: 12px;
-        }
-
-        .job-title-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 6px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .job-title {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--text-primary);
-        }
-
-        .job-date {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .company {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-
-        .experience-item ul {
-            list-style: none;
-            margin-top: 10px;
-        }
-
-        .experience-item li {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .experience-item li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        /* Project Section */
-        .project-item {
-            margin-bottom: 30px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .project-item::before {
-            content: '●';
-            position: absolute;
-            left: 0;
-            top: 5px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        .project-title {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .project-date {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        .project-item ul {
-            list-style: none;
-            margin-top: 10px;
-        }
-
-        .project-item li {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .project-item li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        /* Print Styles */
-        @media print {
-            .theme-toggle {
-                display: none;
-            }
-
-            body {
-                background: white;
-            }
-
-            .resume-container {
-                box-shadow: none;
-            }
-
-            .sidebar {
-                background: #f5f5f5;
-            }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 968px) {
-            .resume-container {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .theme-toggle {
-                top: 20px;
-                right: 20px;
-            }
-
-            .main-content {
-                padding: 40px 30px;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .sidebar {
-                padding: 40px 25px;
-            }
-
-            .main-content {
-                padding: 30px 20px;
-            }
-
-            .profile-name {
-                font-size: 1.7rem;
-            }
-
-            .profile-photo {
-                width: 150px;
-                height: 190px;
-            }
-
-            .profile-photo-wrapper {
-                width: 150px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Swapnil Subhash Chavan | Resume</title>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --panel: #f5f6f8;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --primary: #1e293b;
+      --border: #e5e7eb;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* TOGGLE (TOP RIGHT) */
+    .controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .theme-text {
+      font-weight: 500;
+      color: #1f2933;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #1e293b;
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background: #1e293b;
+    }
+
+    [data-theme="dark"] .theme-text {
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .dot {
+      background: #ffffff;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 80px 20px 40px;
+    }
+
+    .resume {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .resume {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* LEFT */
+    .left {
+      background: var(--panel);
+      padding: 24px;
+      border-radius: 18px;
+    }
+
+    .photo {
+      width: 100%;
+      max-height: 360px;      /* 👈 SIZE LIMIT */
+      aspect-ratio: 3 / 4;
+      overflow: hidden;      /* 👈 overflow रोखतो */
+      background: var(--border);
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;     /* 👈 image neatly crop होते */
+      display: block;
+    }
+
+
+    .name {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .contact {
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .left h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* RIGHT */
+    .right section {
+      margin-bottom: 40px;
+    }
+
+    .right h2 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    ul {
+      padding-left: 18px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    @media print {
+
+      /* Force exact A4 */
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+
+      /* Global reset */
+      html, body {
+        width: 210mm;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        background: #ffffff !important;
+        color: #000000 !important;
+        overflow: visible !important;
+      }
+
+      /* Hide non-print UI */
+      .controls {
+        display: none !important;
+      }
+
+      /* Container must not center vertically */
+      .container {
+        max-width: none !important;
+        width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      /* KEEP TWO COLUMN LAYOUT */
+      .resume {
+        display: grid !important;
+        grid-template-columns: 68mm 1fr !important;
+        gap: 8mm !important;
+        align-items: start !important;
+      }
+
+      /* LEFT COLUMN CLEANUP */
+      .left {
+        background: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+      }
+
+      /* PHOTO SIZE CONTROL */
+      .photo {
+        max-height: 48mm !important;
+        overflow: hidden !important;
+        margin-bottom: 6mm !important;
+        background: #dddddd !important;
+      }
+
+      .photo img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+
+      /* RIGHT COLUMN FLOW */
+      .right {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* VERY IMPORTANT: allow natural flow */
+      section {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+
+      /* DO NOT push Work Experience to next page */
+      section + section {
+        page-break-before: auto !important;
+        break-before: auto !important;
+      }
+
+      /* Headings should stay with content */
+      h2 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        margin-top: 0 !important;
+      }
+
+      /* Paragraph & list behaviour */
+      p {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        orphans: 3;
+        widows: 3;
+      }
+
+      ul {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        margin-bottom: 4mm !important;
+      }
+
+      li {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+
+      /* Remove any accidental min-heights */
+      * {
+        min-height: 0 !important;
+        max-height: none !important;
+      }
+    }
+
+
+  </style>
 </head>
-<body data-theme="light">
-    <!-- Theme Toggle -->
-    <div class="theme-toggle" onclick="toggleTheme()">
-        <span class="theme-icon" id="themeIcon">☀️</span>
-        <div class="toggle-switch">
-            <div class="toggle-slider"></div>
-        </div>
-    </div>
 
-    <div class="resume-container">
-        <!-- Left Sidebar -->
-        <aside class="sidebar">
-            <div class="profile-section">
-                <div class="profile-photo-wrapper">
-                    <div class="profile-photo"><img src="swapnil.jpg" alt="Swapnil Chavan Profile"></div>
-                </div>
-                <h1 class="profile-name">Swapnil Subhash<br>Chavan</h1>
-                <div class="profile-title">Technical Architect</div>
-            </div>
+<body>
 
-            <!-- Contact -->
-            <div class="sidebar-section">
-                <h2>Contact</h2>
-                <div class="contact-item">
-                    <span class="contact-icon">📱</span>
-                    <a href="tel:8452986672">8452986672</a>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-icon">📧</span>
-                    <a href="mailto:swapnil740@gmail.com">swapnil740@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-icon">🔗</span>
-                    <a href="https://linkedin.com/in/swapnilc1" target="_blank">linkedin.com/in/swapnilc1</a>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-icon">📍</span>
-                    <span>Vikhroli Mumbai - 400083</span>
-                </div>
-            </div>
+<div class="controls">
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <span class="theme-text" id="themeLabel">Light</span>
+    <span class="dot"></span>
+  </div>
+</div>
 
-            <!-- Skills -->
-            <div class="sidebar-section">
-                <h2>Skills</h2>
-                
-                <div class="skills-category">
-                    <div class="skills-category-title">Architecture</div>
-                    <div class="skills-list">Microservices, Distributed Systems, System Design, Scalable Cloud Solutions, Design Patterns.</div>
-                </div>
+<div class="container">
+  <div class="resume">
 
-                <div class="skills-category">
-                    <div class="skills-category-title">Core Competencies</div>
-                    <div class="skills-list">.NET 8/ASP.NET Core, Angular (v10+), C#, TypeScript, JavaScript, Entity Framework Core.</div>
-                </div>
+    <!-- LEFT -->
+    <aside class="left">
+      <div class="photo"><img src="swapnil.jpg" alt="Swapnil Chavan Profile"></div>
 
-                <div class="skills-category">
-                    <div class="skills-category-title">Cloud & DevOps</div>
-                    <div class="skills-list">Microsoft Azure, AWS, CI/CD Pipelines, GitHub Actions, OpenShift, Docker.</div>
-                </div>
+      <div class="name">Swapnil Subhash Chavan</div>
 
-                <div class="skills-category">
-                    <div class="skills-category-title">Data & AI</div>
-                    <div class="skills-list">Microsoft SQL Server, Gemini API (GenAI), SQLite Encryption, Database Optimization.</div>
-                </div>
-            </div>
+      <div class="contact">
+        Vikhroli East, Mumbai<br>
+        918452986672<br>
+        swapnil740@gmail.com
+      </div>
 
-            <!-- Notable Achievements -->
-            <div class="sidebar-section">
-                <h2>Notable Achievements</h2>
-                <div class="achievement-item">
-                    <div class="achievement-title">Rockstar of the Month</div>
-                    <div class="achievement-details">Aug 2024 - HEXAWARE</div>
-                </div>
-                <div class="achievement-item">
-                    <div class="achievement-title">Pinnacle Award</div>
-                    <div class="achievement-details">March 2023 - HEXAWARE</div>
-                </div>
-            </div>
+      <h3>Skills</h3>
+      <p><strong>Leadership:</strong> Cross functional Collaboration, Technical Solutioning</p>
+      <p><strong>CI/CD:</strong> CI/CD Pipelines, Git, OpenShift</p>
+      <p><strong>Programming Languages:</strong> C#, JavaScript, TypeScript</p>
+      <p><strong>Framework & Tools:</strong> Angular, ASP.NET Core, Git version control, Microservices Architecture</p>
+      <p><strong>Architecture:</strong> Distributed Systems, Scalable Architecture, System Design</p>
+      <p><strong>Cloud Technologies:</strong> Microsoft Azure, Amazon Web Services (AWS)</p>
+      <p><strong>Databases:</strong> Microsoft SQL server</p>
+    </aside>
 
-            <!-- Certifications -->
-            <div class="sidebar-section">
-                <h2>Certifications</h2>
-                <div class="cert-item">
-                    <div class="achievement-title">AZ-900</div>
-                    <div class="achievement-details">issued by Microsoft</div>
-                </div>
-            </div>
-        </aside>
+    <!-- RIGHT -->
+    <main class="right">
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Professional Summary -->
-            <section class="content-section">
-                <h2>Professional Summary</h2>
-                <p class="summary-text">
-                    Dynamic technology professional with over 14 years of progressive experience in software architecture, full-stack development, and cloud solutions. Expertise in designing scalable, secure, and high-performing enterprise applications that address complex business needs. Proven success in leading cross-functional teams, driving technical strategy, and delivering impactful solutions aligned with organizational goals.
-                </p>
-                <p class="summary-text">
-                    Recognized for exceptional performance and a commitment to excellence in technical leadership.
-                </p>
-            </section>
+      <section class="summary-section">
+        <h2>Professional Summary</h2>
+        <p>
+          Dynamic technology professional with over 14 years of progressive experience in software architecture,
+          full- stack development, and cloud solutions. Expertise in designing scalable, secure, and high-
+          performing enterprise applications that address complex business needs. Proven success in leading
+          cross-functional teams, driving technical strategy, and delivering impactful solutions aligned with
+          organizational goals.
+        </p>
+        <p>
+          Recognized for exceptional performance and a commitment to excellence in technical leadership.
+        </p>
+      </section>
 
-            <!-- Education -->
-            <section class="content-section">
-                <h2>Education</h2>
-                
-                <article class="education-item">
-                    <div class="education-header">
-                        <span class="degree">Master of Computer Applications (MCA)</span>
-                        <span class="edu-date">Aug 2007 – June 2010</span>
-                    </div>
-                    <div class="institution">University of Mumbai (Mumbai)</div>
-                </article>
+      <section class="experience-section">
+        <h2>Work Experience</h2>
 
-                <article class="education-item">
-                    <div class="education-header">
-                        <span class="degree">Bachelor of Commerce (B.Com.)</span>
-                        <span class="edu-date">July 2003 – April 2006</span>
-                    </div>
-                    <div class="institution">University of Mumbai (Mumbai)</div>
-                </article>
-            </section>
+        <p><strong>Hexaware Technologies • 06/2022 - Present</strong><br><strong>Technical Architect</strong></p>
+        <ul>
+          <li>Serve as Technical Architect for a large enterprise client (Big Four consulting firm), providing architecture guidance and delivery oversight for distributed teams of 8-12 engineers across multiple workstreams.</li>
+          <li>Directed creation of innovative cloud-native applications to enhance operational efficiency using ASP.NET Core, Angular, and OpenShift.</li>
+          <li>Architected scalable microservices, improving system performance and reducing operational overhead.</li>
+          <li>Optimized application resource utilization using performance profiling and caching strategies, improving response time and reducing infrastructure costs.</li>
+          <li>Managing distributed development teams to ensure secure and reliable delivery.</li>
+          <li>Implement and streamline CI/CD pipelines, reducing deployment time by 30%.</li>
+          <li>Conduct technical training sessions and mentor developers in coding best practices and API development.</li>
+        </ul>
 
-            <!-- Work History -->
-            <section class="content-section">
-                <h2>Work History</h2>
+        <p><strong>GEP Worldwide • 05/2020 - 06/2022</strong><br><strong>Software Lead</strong></p>
+        <ul>
+          <li>Directed development of 3 core product modules using Angular and ASP.NET Core.</li>
+          <li>Developed micro-frontend architecture aimed at enhancing modular deployment and scaling capabilities.</li>
+          <li>Strengthened application security with OAuth 2.0, API Gateways, and data encryption.</li>
+          <li>Introduced structured code review processes and provided hands-on mentorship.</li>
+          <li>Engaged with product teams to align business objectives with effective technical solutions.</li>
+          <li>Diagnosed and resolved complex performance and integration issues across product modules</li>
+        </ul>
 
-                <article class="experience-item">
-                    <div class="job-header">
-                        <div class="job-title-row">
-                            <span class="job-title">Technical Architect</span>
-                            <span class="job-date">June 2022 - Present</span>
-                        </div>
-                        <div class="company">Hexaware Technologies Limited, Mumbai</div>
-                    </div>
-                    <ul>
-                        <li>Serve as Technical Architect for a large enterprise client (Big Four consulting firm), providing architecture guidance and delivery oversight for distributed teams of 8-12 engineers across multiple workstreams.</li>
-                        <li>Direct the creation of innovative cloud-native applications to enhance operational efficiency using ASP.NET Core, Angular, and OpenShift.</li>
-                        <li>Architect scalable microservices, improving system performance by 30% and reducing operational overhead by 20%.</li>
-                        <li>Optimize application resource utilization using performance profiling and caching strategies, improving response time and reducing infrastructure costs.</li>
-                        <li>Manage distributed development teams to ensure secure and reliable delivery.</li>
-                        <li>Implement and streamline CI/CD pipelines, reducing deployment time by 30%.</li>
-                        <li>Conduct technical training sessions and mentor developers in coding best practices and API development.</li>
-                    </ul>
-                </article>
+        <p><strong>Datamatics Global Services Ltd • 12/2018 - 04/2020</strong><br><strong>Senior Consultant</strong></p>
+        <ul>
+          <li>Collaborated on the architecture and development of a web interface to enhance management efficiency of RPA platform.</li>
+          <li>Documented technical designs and specifications for new features and system enhancements, ensuring clarity and accuracy for development teams.</li>
+          <li>Revamped frontend architecture by migrating and integrating Angular into existing applications.</li>
+          <li>Developed and executed robust authentication solutions with Identity Server 4 to fortify overall application security.</li>
+          <li>Provided mentorship to junior developers and managed release planning activities to adhere to tight delivery schedules.</li>
+        </ul>
 
-                <article class="experience-item">
-                    <div class="job-header">
-                        <div class="job-title-row">
-                            <span class="job-title">Software Lead</span>
-                            <span class="job-date">May 2020 – June 2022</span>
-                        </div>
-                        <div class="company">GEP Solutions Private Limited, Mumbai</div>
-                    </div>
-                    <ul>
-                        <li>Directed development of 3 core product modules using Angular and ASP.NET Core.</li>
-                        <li>Architected micro-frontend solutions that enhanced modular deployment and scaling capabilities.</li>
-                        <li>Strengthened application security with OAuth 2.0, API Gateways, and data encryption.</li>
-                        <li>Introduced structured code review processes and offered hands-on mentorship.</li>
-                        <li>Engaged with product teams to align business objectives with effective technical solutions.</li>
-                        <li>Resolved complex performance and integration issues across product modules.</li>
-                    </ul>
-                </article>
+        <p><strong>Accenture India • 12/2016 - 11/2018</strong><br><strong>Application Developer Senior Analyst</strong></p>
+        <ul>
+          <li>Reduced AWS costs by 30% by optimizing DynamoDB/Redshift data pipelines using Lambda functions</li>
+          <li>Developed solution to transfer data between AWS DynamoDB and Redshift using AWS Lambda and DDB streams</li>
+          <li>Automated manual Excel tasks using Python scripts, saving 15+ hours per month</li>
+          <li>Resolved production issues and ensured smooth delivery of bug fixes and enhancements</li>
+          <li>Provided production support and resolved technical issues within SLA timeframes.</li>
+        </ul>
 
-                <article class="experience-item">
-                    <div class="job-header">
-                        <div class="job-title-row">
-                            <span class="job-title">Senior Consultant</span>
-                            <span class="job-date">Dec 2018 - April 2020</span>
-                        </div>
-                        <div class="company">Datamatics Robotics Software Limited, Mumbai</div>
-                    </div>
-                    <ul>
-                        <li>Collaborated on the architecture and development of a web interface to improve management efficiency of RPA platform.</li>
-                        <li>Documented technical designs and specifications for new features and system enhancements, ensuring clarity and accuracy for development teams.</li>
-                        <li>Revamped frontend architecture by migrating and integrating Angular into existing applications.</li>
-                        <li>Developed and executed robust authentication solutions with Identity Server 4 to fortify overall application security.</li>
-                    </ul>
-                </article>
+        <p><strong>Dima Engineering Pvt Ltd • 09/2011 - 11/2016</strong><br><strong>Software Developer</strong></p>
+        <ul>
+          <li>Built enterprise-grade solutions for education, travel, and medical sectors.</li>
+          <li>Participated in project analysis, research, and solution design with cross-functional teams</li>
+          <li>Led Bootstrap framework development team, creating UI components for web applications</li>
+          <li>Provided release management and production support, ensuring smooth delivery cycles.</li>
+        </ul>
 
-                <article class="experience-item">
-                    <div class="job-header">
-                        <div class="job-title-row">
-                            <span class="job-title">Application Developer Senior Analyst</span>
-                            <span class="job-date">Dec 2016 - Nov 2018</span>
-                        </div>
-                        <div class="company">Accenture Solutions Private Limited, Mumbai</div>
-                    </div>
-                    <ul>
-                        <li>Reduced AWS costs by 30% by optimizing DynamoDB/Redshift data pipelines using Lambda functions.</li>
-                        <li>Improved solution to transfer data between AWS DynamoDB and Redshift using AWS Lambda and DDB streams.</li>
-                        <li>Automated manual Excel tasks using Python scripts, saving 15+ hours per month.</li>
-                        <li>Resolved production issues and ensured smooth delivery of bug fixes and enhancements.</li>
-                        <li>Provided production support and fixed technical issues within SLA timeframes.</li>
-                    </ul>
-                </article>
+        <p><strong>Monarch Innovative Technology • 08/2010 - 02/2011</strong><br><strong>Junior Testing Engineer</strong></p>
+        <ul>
+          <li>Performed hardware assembly and testing for broadcast equipment</li>
+          <li>Created and filed detailed bug reports using Bugzilla tracking system</li>
+        </ul>
+      </section>
 
-                <article class="experience-item">
-                    <div class="job-header">
-                        <div class="job-title-row">
-                            <span class="job-title">Software Developer</span>
-                            <span class="job-date">Sept 2011 - Nov 2016</span>
-                        </div>
-                        <div class="company">Dima Engineering Private Limited, Mumbai</div>
-                    </div>
-                    <ul>
-                        <li>Built enterprise-grade solutions for education, travel, and medical sectors.</li>
-                        <li>Led project analysis, research, and solution design with cross-functional teams.</li>
-                        <li>Led Bootstrap framework development team, creating UI components for web applications.</li>
-                        <li>Participated in release management and production support, ensuring smooth delivery cycles.</li>
-                    </ul>
-                </article>
+      <section>
+        <h2>Education</h2>
+        <p><strong>Master of Computer Application</strong><br>University of Mumbai –(Mumbai)<br>08/2007 - 06/2010</p>
+        <p><strong>Bachelor of Commerce</strong><br>University of Mumbai (Mumbai)<br>07/2003 - 04/2006</p>
+      </section>
 
-                <article class="experience-item">
-                    <div class="job-header">
-                        <div class="job-title-row">
-                            <span class="job-title">Junior Testing Engineer</span>
-                            <span class="job-date">Aug 2010 - Feb 2011</span>
-                        </div>
-                        <div class="company">Monarch Innovative Technology Private Limited, Mumbai</div>
-                    </div>
-                    <ul>
-                        <li>Created and filed detailed bug reports using Bugzilla tracking system.</li>
-                        <li>Conducted black-box, performance, security, and stress testing of broadcast software used in news broadcasting environments.</li>
-                        <li>Executed functional and performance testing of video production software Twister Pro for both online and offline video mixing.</li>
-                    </ul>
-                </article>
-            </section>
+      <section>
+        <h2>Certification</h2>
+        <p>AZ-900</p>
+      </section>
 
-            <!-- AI Project -->
-            <section class="content-section">
-                <h2>AI Project</h2>
-                
-                <article class="project-item">
-                    <div class="project-title">AI-Powered Monthly Expense Analysis System (Personal Project)</div>
-                    <div class="project-date">Jan 2026</div>
-                    <ul>
-                        <li>Automated monthly extraction of bank and credit card statements from Gmail using Google Apps Script and versioned them securely in GitHub.</li>
-                        <li>Built GitHub Actions workflows to unlock encrypted PDFs, batch-process statements, and classify bank vs credit card data.</li>
-                        <li>Used Gemini API to convert statement data into structured JSON and store it in an encrypted SQLite database.</li>
-                        <li>Implemented failure handling with automatic cleanup and email alerts for unsuccessful processing.</li>
-                        <li>Generated a monthly personalized financial report with spend analysis, top transactions, dues, and AI-based budgeting and investment recommendations.</li>
-                    </ul>
-                </article>
-            </section>
-        </main>
-    </div>
+      <section>
+        <h2>Awards & Recognition</h2>
+        <p>Rockstar of the Month<br>08/2024<br>Hexaware</p>
+        <p>Pinnacle Award<br>08/2023<br>Hexaware</p>
+      </section>
 
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.getElementById('themeIcon');
-            const currentTheme = body.getAttribute('data-theme');
-            
-            if (currentTheme === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '🌙';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                themeIcon.textContent = '☀️';
-                localStorage.setItem('theme', 'light');
-            }
-        }
+      <section>
+        <h2>Technical Project</h2>
+        <p><strong>AI-Powered Expense Analysis System (Personal Project)</strong></p>
+        <ul>
+          <li>Developed an automated workflow to extract financial statements from emails and parse PDF data using AI models.</li>
+          <li>Orchestrated end-to-end processing using Google Apps Script and GitHub Actions for event-triggering.</li>
+          <li>Designed a normalized database schema to store transaction data in SQLLite DB within Github with encryption.</li>
+          <li>Automated the generation and email delivery of monthly expense visualization reports.</li>
+        </ul>
+      </section>
 
-        // Load saved theme preference
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const themeIcon = document.getElementById('themeIcon');
-            document.body.setAttribute('data-theme', savedTheme);
-            themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
-        });
-    </script>
+    </main>
+  </div>
+</div>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const label = document.getElementById("themeLabel");
+
+    if (html.dataset.theme === "dark") {
+      html.dataset.theme = "light";
+      label.textContent = "Light";
+    } else {
+      html.dataset.theme = "dark";
+      label.textContent = "Dark";
+    }
+  }
+</script>
+
 </body>
-</html>
+</html>                    
