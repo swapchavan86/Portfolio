@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Swapnil Subhash Chavan | Resume</title>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --panel: #f5f6f8;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --primary: #1e293b;
+      --border: #e5e7eb;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* TOGGLE (TOP RIGHT) */
+    .controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .theme-text {
+      font-weight: 500;
+      color: #1f2933;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #1e293b;
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background: #1e293b;
+    }
+
+    [data-theme="dark"] .theme-text {
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .dot {
+      background: #ffffff;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 80px 20px 40px;
+    }
+
+    .resume {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .resume {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* LEFT */
+    .left {
+      background: var(--panel);
+      padding: 24px;
+      border-radius: 18px;
+    }
+
+    .photo {
+      width: 100%;
+      max-height: 360px;      /* 👈 SIZE LIMIT */
+      aspect-ratio: 3 / 4;
+      overflow: hidden;      /* 👈 overflow रोखतो */
+      background: var(--border);
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;     /* 👈 image neatly crop होते */
+      display: block;
+    }
+
+
+    .name {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .contact {
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .left h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* RIGHT */
+    .right section {
+      margin-bottom: 40px;
+    }
+
+    .right h2 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    ul {
+      padding-left: 18px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    @media print {
+
+      /* Force exact A4 */
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+
+      /* Global reset */
+      html, body {
+        width: 210mm;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        background: #ffffff !important;
+        color: #000000 !important;
+        overflow: visible !important;
+      }
+
+      /* Hide non-print UI */
+      .controls {
+        display: none !important;
+      }
+
+      /* Container must not center vertically */
+      .container {
+        max-width: none !important;
+        width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      /* KEEP TWO COLUMN LAYOUT */
+      .resume {
+        display: grid !important;
+        grid-template-columns: 68mm 1fr !important;
+        gap: 8mm !important;
+        align-items: start !important;
+      }
+
+      /* LEFT COLUMN CLEANUP */
+      .left {
+        background: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+      }
+
+      /* PHOTO SIZE CONTROL */
+      .photo {
+        max-height: 48mm !important;
+        overflow: hidden !important;
+        margin-bottom: 6mm !important;
+        background: #dddddd !important;
+      }
+
+      .photo img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+
+      /* RIGHT COLUMN FLOW */
+      .right {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* VERY IMPORTANT: allow natural flow */
+      section {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+
+      /* DO NOT push Work Experience to next page */
+      section + section {
+        page-break-before: auto !important;
+        break-before: auto !important;
+      }
+
+      /* Headings should stay with content */
+      h2 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        margin-top: 0 !important;
+      }
+
+      /* Paragraph & list behaviour */
+      p {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        orphans: 3;
+        widows: 3;
+      }
+
+      ul {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+        margin-bottom: 4mm !important;
+      }
+
+      li {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+
+      /* Remove any accidental min-heights */
+      * {
+        min-height: 0 !important;
+        max-height: none !important;
+      }
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+<div class="controls">
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <span class="theme-text" id="themeLabel">Light</span>
+    <span class="dot"></span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="resume">
+
+    <!-- LEFT -->
+    <aside class="left">
+      <div class="photo"><img src="swapnil.jpg" alt="Swapnil Chavan Profile"></div>
+
+      <div class="name">Swapnil Subhash Chavan</div>
+
+      <div class="contact">
+        Vikhroli Mumbai - 400083<br>
+        Phone: 8452986672<br>
+        Email: swapnil740@gmail.com<br>
+        LinkedIn: <a href="https://linkedin.com/in/swapnilc1" target="_blank">linkedin.com/in/swapnilc1</a>
+      </div>
+
+      <h3>Skills</h3>
+      <p><strong>Architecture:</strong> Microservices, Distributed Systems, System Design, Scalable Cloud Solutions, Design Patterns.</p>
+      <p><strong>Core Competencies:</strong> .NET 8/ASP.NET Core, Angular (v10+), C#, TypeScript, JavaScript, Entity Framework Core.</p>
+      <p><strong>Cloud & DevOps:</strong> Microsoft Azure, AWS, CI/CD Pipelines, GitHub Actions, OpenShift, Docker.</p>
+      <p><strong>Data & AI:</strong> Microsoft SQL Server, Gemini API (GenAI), SQLite Encryption, Database Optimization.</p>
+    </aside>
+
+    <!-- RIGHT -->
+    <main class="right">
+
+      <section class="summary-section">
+        <h2>Professional Summary</h2>
+        <p>
+          Dynamic technology professional with over 14 years of progressive experience in software architecture,
+          full- stack development, and cloud solutions. Expertise in designing scalable, secure, and high-
+          performing enterprise applications that address complex business needs. Proven success in leading
+          cross-functional teams, driving technical strategy, and delivering impactful solutions aligned with
+          organizational goals.
+        </p>
+        <p>
+          Recognized for exceptional performance and a commitment to excellence in technical leadership.
+        </p>
+      </section>
+
+      <section class="experience-section">
+        <h2>Work Experience</h2>
+
+        <p><strong>Hexaware Technologies Limited, Mumbai • June 2022 - Present</strong><br><strong>Technical Architect</strong></p>
+        <ul>
+          <li>Serve as Technical Architect for a large enterprise client (Big Four consulting firm), providing architecture guidance and delivery oversight for distributed teams of 8-12 engineers across multiple workstreams.</li>
+          <li>Direct the creation of innovative cloud-native applications to enhance operational efficiency using ASP.NET Core, Angular, and OpenShift.</li>
+          <li>Architect scalable microservices, improving system performance by 30% and reducing operational overhead by 20%.</li>
+          <li>Optimize application resource utilization using performance profiling and caching strategies, improving response time and reducing infrastructure costs.</li>
+          <li>Manage distributed development teams to ensure secure and reliable delivery.</li>
+          <li>Implement and streamline CI/CD pipelines, reducing deployment time by 30%.</li>
+          <li>Conduct technical training sessions and mentor developers in coding best practices and API development.</li>
+        </ul>
+
+        <p><strong>GEP Solutions Private Limited, Mumbai • May 2020 – June 2022</strong><br><strong>Software Lead</strong></p>
+        <ul>
+          <li>Directed development of 3 core product modules using Angular and ASP.NET Core.</li>
+          <li>Architected micro-frontend solutions that enhanced modular deployment and scaling capabilities.</li>
+          <li>Strengthened application security with OAuth 2.0, API Gateways, and data encryption.</li>
+          <li>Introduced structured code review processes and offered hands-on mentorship.</li>
+          <li>Engaged with product teams to align business objectives with effective technical solutions.</li>
+          <li>Resolved complex performance and integration issues across product modules.</li>
+        </ul>
+
+        <p><strong>Datamatics Robotics Software Limited, Mumbai • Dec 2018 - April 2020</strong><br><strong>Senior Consultant</strong></p>
+        <ul>
+          <li>Collaborated on the architecture and development of a web interface to improve management efficiency of RPA platform.</li>
+          <li>Documented technical designs and specifications for new features and system enhancements, ensuring clarity and accuracy for development teams.</li>
+          <li>Revamped frontend architecture by migrating and integrating Angular into existing applications.</li>
+          <li>Developed and executed robust authentication solutions with Identity Server 4 to fortify overall application security.</li>
+        </ul>
+
+        <p><strong>Accenture Solutions Private Limited, Mumbai • Dec 2016 - Nov 2018</strong><br><strong>Application Developer Senior Analyst</strong></p>
+        <ul>
+          <li>Reduced AWS costs by 30% by optimizing DynamoDB/Redshift data pipelines using Lambda functions.</li>
+          <li>Improved solution to transfer data between AWS DynamoDB and Redshift using AWS Lambda and DDB streams.</li>
+          <li>Automated manual Excel tasks using Python scripts, saving 15+ hours per month.</li>
+          <li>Resolved production issues and ensured smooth delivery of bug fixes and enhancements.</li>
+          <li>Provided production support and fixed technical issues within SLA timeframes.</li>
+        </ul>
+
+        <p><strong>Dima Engineering Private Limited, Mumbai • Sept 2011 - Nov 2016</strong><br><strong>Software Developer</strong></p>
+        <ul>
+          <li>Built enterprise-grade solutions for education, travel, and medical sectors.</li>
+          <li>Led project analysis, research, and solution design with cross-functional teams.</li>
+          <li>Led Bootstrap framework development team, creating UI components for web applications.</li>
+          <li>Participated in release management and production support, ensuring smooth delivery cycles.</li>
+        </ul>
+
+        <p><strong>Monarch Innovative Technology Private Limited, Mumbai • Aug 2010 - Feb 2011</strong><br><strong>Junior Testing Engineer</strong></p>
+        <ul>
+          <li>Created and filed detailed bug reports using Bugzilla tracking system.</li>
+          <li>Conducted black-box, performance, security, and stress testing of broadcast software used in news broadcasting environments.</li>
+          <li>Executed functional and performance testing of video production software Twister Pro for both online and offline video mixing.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <p><strong>Master of Computer Applications (MCA)</strong><br>University of Mumbai (Mumbai)<br>Aug 2007 – June 2010</p>
+        <p><strong>Bachelor of Commerce (B.Com.)</strong><br>University of Mumbai (Mumbai)<br>July 2003 – April 2006</p>
+      </section>
+
+      <section>
+        <h2>Certifications</h2>
+        <p>AZ-900 – issued by Microsoft</p>
+      </section>
+
+      <section>
+        <h2>Notable Achievements</h2>
+        <p>Rockstar of the Month<br>Aug 2024 - HEXAWARE</p>
+        <p>Pinnacle Award<br>March 2023 - HEXAWARE</p>
+      </section>
+
+      <section>
+        <h2>AI Project</h2>
+        <p><strong>AI-Powered Monthly Expense Analysis System (Personal Project) – Jan 2026</strong></p>
+        <ul>
+          <li>Automated monthly extraction of bank and credit card statements from Gmail using Google Apps Script and versioned them securely in GitHub.</li>
+          <li>Built GitHub Actions workflows to unlock encrypted PDFs, batch-process statements, and classify bank vs credit card data.</li>
+          <li>Used Gemini API to convert statement data into structured JSON and store it in an encrypted SQLite database.</li>
+          <li>Implemented failure handling with automatic cleanup and email alerts for unsuccessful processing.</li>
+          <li>Generated a monthly personalized financial report with spend analysis, top transactions, dues, and AI-based budgeting and investment recommendations.</li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const label = document.getElementById("themeLabel");
+
+    if (html.dataset
